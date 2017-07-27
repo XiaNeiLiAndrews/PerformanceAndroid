@@ -30,7 +30,7 @@ class AndroidDebugBridge(object):
             return True
         else:
             return False
-            # return [device for device in devices if len(device) > 2]
+
     # 状态
 
     def get_state(self):
@@ -38,7 +38,7 @@ class AndroidDebugBridge(object):
         result = result.strip(' \t\n\r')
         return result or None
 
-    #重启
+    # 重启
     def reboot(self, option):
         command = "reboot"
         if len(option) > 7 and option in ("bootloader", "recovery",):
@@ -76,13 +76,11 @@ class AndroidDebugBridge(object):
     # 根据包名得到进程id
     def get_app_pid(self, pkg_name):
         string = self.call_adb("shell ps | grep "+pkg_name)
-        # print(string)
+
         if string == '':
             return "the process doesn't exist."
         result = string.split(" ")
-        # print(result[4])
+
         return result[4]
 
 
-# reuslt = AndroidDebugBridge().attached_devices()
-# print(reuslt)
