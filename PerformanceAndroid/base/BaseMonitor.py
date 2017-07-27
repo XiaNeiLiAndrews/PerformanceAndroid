@@ -16,7 +16,6 @@ def get_cpu(pkg_name):
     output = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
     for info in output:
         if info.split()[1].decode().split("/")[1][:-1] == pkg_name:  # 只有包名相等
-            # print("cpu=" + info.split()[2].decode())
             cpu.append(float(info.split()[2].decode().split("%")[0]))
             print("----cpu-----")
             print(cpu)
@@ -29,18 +28,10 @@ def get_men(pkg_name):
     men_s = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE).stdout.readlines()
     for info in men_s:
         if len(info.split()) and info.split()[0].decode() == "TOTAL":
-            # print("men="+info.split()[1].decode())
             men.append(int(info.split()[1].decode()))
             print("----men----")
             print(men)
             return men
-
-
-# 得到fps
-'''
-@author fenfenzhong
-'''
-
 
 def get_fps(pkg_name):
 
@@ -81,7 +72,6 @@ def get_fps(pkg_name):
 
     _fps = int(frame_count * 60 / (frame_count + vsync_overtime))
     fps.append(_fps)
-    # return (frame_count, jank_count, fps)
     print("-----fps------")
     print(fps)
     return fps
@@ -129,8 +119,7 @@ def get_flow(pkg_name, type):
         flow[1].append(0)
         return flow
 
-if __name__ == '__main__':
-    # pid = get_pid("com.jianshu.haruki")
-    print(get_flow("com.jianshu.haruki", "gprs"))
-    print(get_flow("com.jianshu.haruki", "gprs"))
-    print(get_flow("com.jianshu.haruki", "gprs"))
+# if __name__ == '__main__':
+#     print(get_flow("com.jianshu.haruki", "gprs"))
+#     print(get_flow("com.jianshu.haruki", "gprs"))
+#     print(get_flow("com.jianshu.haruki", "gprs"))

@@ -1,24 +1,30 @@
 __author__ = 'Administrator'
 import os
 import re
-import math
+
+
+
 class getPhone():
+
     def __init__(self, cmd_log) :
+
         self.cmd_log = cmd_log
+
     def getModel(self):
+
         os.system('adb shell cat /system/build.prop >'+self.cmd_log)
         l_list = {}
         with open(self.cmd_log, "r") as f:
             lines = f.readlines()
             for line in lines:
                 line = line.split('=')
-                #Android 系统，如anroid 4.0
+                # Android 系统，如anroid 4.0
                 if (line[0] == 'ro.build.version.release'):
                     l_list["release"] = line[1].replace("\n", " ")
-                    #手机名字
+                    # 手机名字
                 if (line[0]=='ro.product.model'):
                     l_list["phone_name"] = line[1].replace("\n", " ")
-                    #手机品牌
+                    # 手机品牌
                 if (line[0]=='ro.product.brand'):
                      l_list["phone_model"] = line[1].replace("\n", " ")
 
@@ -39,8 +45,9 @@ class getPhone():
                         break
         if os.path.exists(self.cmd_log):
             os.remove(self.cmd_log)
-        # return  str(math.ceil(int(men_total)/1024)) + "M"
+
         return int(men_total)
+
     # 得到几核cpu
     def get_cpu_kel(self):
         os.system("adb shell cat /proc/cpuinfo >" + self.cmd_log)
@@ -54,7 +61,6 @@ class getPhone():
         if os.path.exists(self.cmd_log):
             os.remove(self.cmd_log)
         return str(cpu_kel) + "核"
-    # print(get_cpu_kel("d:\\men.txt"))
 
     # 得到手机分辨率
     def get_app_pix(self):

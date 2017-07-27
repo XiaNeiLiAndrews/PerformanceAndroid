@@ -56,6 +56,7 @@ def maxFlow(flow):
     maxFpsDown = str(max(_flowDown)) + "KB"  # 下行流量
     return maxFpsUp, maxFpsDown
 
+
 def avgFlow(flow):
     _flowUp = []
     _flowDown = []
@@ -72,7 +73,3 @@ def avgFlow(flow):
     avgFpsDown = str(math.ceil(sum(_flowDown) / len(_flowDown))) + "KB"
     return avgFpsUp, avgFpsDown
 
-if __name__ == '__main__':
-    flow = [[93919172, 94987124, 96309507], [14250800, 14285269, 14331153]]
-    print(avgFlow(flow))
-    print(maxFlow(flow))

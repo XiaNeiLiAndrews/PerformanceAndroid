@@ -17,6 +17,7 @@ from PerformanceAndroid.base import BaseMonitor
 from PerformanceAndroid.base import BaseAnalysis
 
 
+
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 
 
@@ -90,7 +91,6 @@ def get_phome():
     app["kel"] = bg[2]
     return app
 
-
 # 开始脚本测试
 
 def start_monkey(cmd, log):
@@ -140,8 +140,7 @@ if __name__ == '__main__':
                     app = {"beforeBattery": BaseMonitor.get_battery(), "net": mc["net"], "monkey_log": mc["monkey_log"]}
                     report(app, str((endtime - starttime).seconds) + "秒")
                     bo.close()
-                    # get_error(mc["monkey_log"])
-                    # get_phome(mc.phone_msg_log)
+
                     break
     else:
         print("设备不存在")

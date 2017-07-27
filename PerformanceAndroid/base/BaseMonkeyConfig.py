@@ -5,17 +5,9 @@ import os
 
 
 
-def ConfigFilePath():
+PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
 
-    PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
-
-    return PATH
-
-
-
-PATH = lambda p: os.path.abspath(
-    os.path.join(os.path.dirname(__file__), p)
-)
+FilePath = os.path.dirname(os.path.dirname(os.path.dirname(__file__)))
 
 
 def monkeyConfig(init_file):
@@ -23,10 +15,10 @@ def monkeyConfig(init_file):
     config.read(init_file)
     app = {}
     app["package_name"] = config['DEFAULT']['package_name']
-    # mmonkeyconfig.now = time.strftime('%Y-%m-%d-%H_%M_%S', time.localtime(time.time()))
     app["activity"] = config['DEFAULT']['activity']
+
     # mac 下使用此句来写log
-    log = PATH("../log") + "/" +time.strftime('%Y-%m-%d-%H_%M_%S', time.localtime(time.time()))
+    log = PATH(FilePath+"/logFile") + "/" +time.strftime('%Y-%m-%d-%H_%M_%S', time.localtime(time.time()))
     # windows 下
     # log = PATH("../log") + "\\" + time.strftime('%Y-%m-%d-%H_%M_%S', time.localtime(time.time()))
     app["log"] = log
@@ -35,11 +27,5 @@ def monkeyConfig(init_file):
     app["monkey_log"] = log + "monkey.log"
     app["cmd"] = config['DEFAULT']['cmd'] + ">" + app["monkey_log"]
 
-
     return app
 
-
-
-# if __name__=='__main__':
-#
-#     monkeyConfig("monkey.ini")
