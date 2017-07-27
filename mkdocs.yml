@@ -1,0 +1,13 @@
+site_name: PerformanceAndroid
+site_description: use monkey to test android mobile application performance
+site_author: Michael.yue
+repo_url: https://github.com/michael.tz.yue@gmail.com/AndroidPerformance
+
+theme: readthedocs
+
+pages:
+- Home: index.md
+- About:
+  - Release Notes: about/changelog.md
+  - Contributing: about/contributing.md
+  - License: about/license.md

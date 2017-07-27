@@ -1,0 +1,26 @@
+environment:
+  global:
+    RANDOM_SEED: 0
+    PIPENV_NOSPIN: true
+  matrix:
+    - PYTHON_MAJOR: 0.0.1
+      PYTHON_MINOR: 0.0.1
+
+cache:
+  - .venv -> Makefile
+
+install:
+  # Export build paths
+  - copy C:\MinGW\bin\mingw32-make.exe C:\MinGW\bin\make.exe
+  - set PATH=%PATH%;C:\MinGW\bin
+  # Install system dependencies
+  - pip install pipenv~=5.0
+  - make doctor
+  # Install project dependencies
+  - make install
+
+build: off
+
+test_script:
+  - make check
+  - make test
