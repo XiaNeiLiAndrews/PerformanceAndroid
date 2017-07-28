@@ -1,24 +1,19 @@
 # -*- coding: utf-8 -*-
-import datetime
-import time
-import math
+
 
 import xlsxwriter
+import os
+import re
+import time,datetime
+from PerformanceAndroid.base import AdbCommon,BaseMonkeyConfig,BaseCashEmnu as go,BasePhoneMsg,BaseReport,BaseMonitor,BaseAnalysis
+
+
 
 __author__ = 'michael.yue'
-import os
-from PerformanceAndroid.base import AdbCommon
-from PerformanceAndroid.base import BaseMonkeyConfig
-import re
-from PerformanceAndroid.base import BaseCashEmnu as go
-from PerformanceAndroid.base import BasePhoneMsg
-from PerformanceAndroid.base import BaseReport
-from PerformanceAndroid.base import BaseMonitor
-from PerformanceAndroid.base import BaseAnalysis
-
 
 
 PATH = lambda p: os.path.abspath(os.path.join(os.path.dirname(__file__), p))
+
 
 
 workbook = xlsxwriter.Workbook(os.path.dirname(__file__)+'/report/report.xlsx')
@@ -43,6 +38,7 @@ def get_error(log):
     if len(crash):
         worksheet2 = workbook.add_worksheet("异常日志")
         bo.crash(worksheet2, crash)
+
 
 def report(app,sumTime):
 
@@ -78,10 +74,7 @@ def report(app,sumTime):
     app["fps"] = BaseMonitor.fps
     bo.analysis(worksheet3, app)
 
-
-
 # 手机信息
-
 def get_phome():
     bg = BasePhoneMsg.getPhone("log.txt").get_phone_Kernel()
     app = {}
